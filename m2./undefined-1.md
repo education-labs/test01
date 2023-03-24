@@ -1,5 +1,7 @@
 # 배포
 
+#### Cloud9 Terminal 창 > root계정으로 진행
+
 #### terraform init
 
 ```bash
@@ -46,9 +48,8 @@ commands will detect it and remind you to do so if necessary.
 
 #### terraform plan 후 terraform apply로 배포
 
-```bash
-# plan 명령어로 생성될 자원 확인
-```
+<pre class="language-bash"><code class="lang-bash"><strong># plan 명령어로 생성될 자원 확인
+</strong></code></pre>
 
 ```bash
 terraform plan -var-file="edu.auto.tfvars"
@@ -58,7 +59,6 @@ terraform plan -var-file="edu.auto.tfvars"
 # -var-file옵션으로 terraform에서 사용할 변수값이 입력된 파일을 변경해가며 사용할 수 있다.
 # auto.tfvars로 끝나는 파일은 terraform에서 자동으로 load한다.
 # -var-file="edu.auto.tfvars" 를 생략해도 자동으로 load하므로 본 프로젝트에선 이후 생략한다.
- ba
 # plan 결과
 Plan: 16 to add, 0 to change, 0 to destroy.
  

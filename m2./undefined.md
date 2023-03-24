@@ -1,4 +1,4 @@
-# 작업 폴더 생성 및 변수 값 설정
+# 폴더 생성 및 변수 값 설정
 
 #### Cloud9 Terminal 창 > root계정으로 진행
 
@@ -23,4 +23,4 @@ vpc_cidr = "10.[학생번호].0.0/16"
 myip = "x.x.x.x/32" # myip.com에서 Your IP address is부분을 /32를 붙여 cidr값으로 표현
 ```
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>

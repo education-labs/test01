@@ -6,7 +6,7 @@ IaC를 이용하여 EKS 및 EKS ecosystem(모니터링, 로깅, 오토스케일�
 
 IaC 관리 환경은 cloud9를 통해 구축한다.
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
 
 

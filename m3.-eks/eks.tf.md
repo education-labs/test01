@@ -1,4 +1,6 @@
-# eks.tf 파일 생성
+# eks.tf 생성
+
+#### Cloud9 Terminal 창 > root계정으로 진행
 
 #### 아래와 같이 eks.tf 파일을 생성하고 module 자원명이 eks인 모듈을 요구사항에 부합하도록 작성한다.
 
