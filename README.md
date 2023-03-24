@@ -34,4 +34,4 @@ cloud9를 배포할 vpc, subnet, nat gateway, internet gateway와​&#x20;
 
 terraform 구동시 assume role할 makingeks 라는 iam role은 사전에 제공된다.
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>

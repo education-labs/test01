@@ -130,3 +130,20 @@ Usage: jq [options] <jq filter> [file...]
          --slurpfile a f        set variable $a to an array of JSON texts read from <f>;
         See the manpage for more options
 ```
+
+####
+
+#### 실습에서 자주 사용할 환경변수 구성
+
+\[학생코드]에 학생코드 입력
+
+```bash
+echo 'export USERNAME=[학생코드]' >> ~/.bashrc​
+source ~/.bashrc
+```
+
+확인
+
+```bash
+echo $USERNAME
+```
