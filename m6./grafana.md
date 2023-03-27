@@ -48,14 +48,7 @@ kubectl create namespace grafana
 ```
 
 ```bash
-helm upgrade -i grafana grafana/grafana \​
---namespace grafana \​
---set persistence.storageClassName="gp2" \​
---set persistence.enabled=true \​
---set adminPassword='admin123' \​
---values /home/ec2-user/environment/grafana/grafana.yaml \​
---set service.type=LoadBalancer \​
---wait
+helm upgrade -i grafana grafana/grafana --namespace grafana --set persistence.storageClassName="gp2" --set persistence.enabled=true --set adminPassword='admin123' --values /home/ec2-user/environment/grafana/grafana.yaml --set service.type=LoadBalancer --wait
 ```
 
 ```
