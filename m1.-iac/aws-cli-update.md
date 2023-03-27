@@ -4,8 +4,9 @@
 
 root계정으로 변경
 
-<pre class="language-bash"><code class="lang-bash"><strong>sudo su -
-</strong></code></pre>
+```bash
+sudo su -
+```
 
 패키지 업데이트
 
