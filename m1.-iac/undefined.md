@@ -6,24 +6,19 @@
 
 kubectl 다운로드
 
-```bash
-curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.9/2023-01-11/bin/linux/amd64/kubectl
-```
+<pre class="language-bash"><code class="lang-bash"><strong>curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.9/2023-01-11/bin/linux/amd64/kubectl
+</strong></code></pre>
 
 실행권한 부여
 
-```bash
-chmod +x ./kubectl
-```
+<pre class="language-bash"><code class="lang-bash"><strong>chmod +x ./kubectl
+</strong></code></pre>
 
 path 추가
 
 ```bash
 mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-```
-
-```bash
-echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrcb
+echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
 ```
 
 설치 확인
@@ -47,14 +42,8 @@ Kustomize Version: v4.5.4​
 #### terraform
 
 ```bash
-yum install -y yum-utils​
-```
-
-```bash
-yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo​
-```
-
-```bash
+yum install -y yum-utils
+​yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 yum -y install terraform
 ```
 
@@ -78,21 +67,14 @@ terraform version
 
 ```bash
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
-```
-
-```bash
-chmod 700 get_helm.sh​
-```
-
-```bash
+chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
 설치 확인
 
-```bash
-helm version --short | cut -d + -f 1
-```
+<pre class="language-bash"><code class="lang-bash"><strong>helm version --short | cut -d + -f 1
+</strong></code></pre>
 
 예상 결과
 
