@@ -23,21 +23,7 @@ kubectl create namespace karpenter
 ```
 
 ```bash
-helm upgrade -i karpenter oci://public.ecr.aws/karpenter/karpenter --version ${KARPENTER_VERSION} --namespace karpenter \
---set settings.aws.defaultInstanceProfile=${CLUSTER_NAME}-KarpenterInstanceProfile \
---set settings.aws.clusterEndpoint="${CLUSTER_ENDPOINT}" \
---set settings.aws.clusterName=${CLUSTER_NAME} \
---set serviceAccount.annotations."eks\.amazonaws\.com/role-arn"="arn:aws:iam::${AWS_ACCOUNT_ID}:role/${CLUSTER_NAME}-KarpenterControllerRole" \
---set controller.resources.requests.cpu=1 \
---set controller.resources.requests.memory=1Gi \
---set controller.resources.limits.cpu=1 \
---set controller.resources.limits.memory=1Gi \
---set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].key="karpenter.sh/provisioner-name" \
---set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].operator="DoesNotExist" \
---set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[1].matchExpressions[0].key="eks.amazonaws.com/nodegroup" \
---set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[1].matchExpressions[0].operator="In" \
---set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[1].matchExpressions[0].values[0]=${NODEGROUP} \
---version ${KARPENTER_VERSION} --wait
+helm upgrade -i karpenter oci://public.ecr.aws/karpenter/karpenter --version ${KARPENTER_VERSION} --namespace karpenter --set settings.aws.defaultInstanceProfile=${CLUSTER_NAME}-KarpenterInstanceProfile --set settings.aws.clusterEndpoint="${CLUSTER_ENDPOINT}" --set settings.aws.clusterName=${CLUSTER_NAME} --set serviceAccount.annotations."eks\.amazonaws\.com/role-arn"="arn:aws:iam::${AWS_ACCOUNT_ID}:role/${CLUSTER_NAME}-KarpenterControllerRole" --set controller.resources.requests.cpu=1 --set controller.resources.requests.memory=1Gi --set controller.resources.limits.cpu=1 --set controller.resources.limits.memory=1Gi --set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].key="karpenter.sh/provisioner-name" --set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].operator="DoesNotExist" --set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[1].matchExpressions[0].key="eks.amazonaws.com/nodegroup" --set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[1].matchExpressions[0].operator="In" --set affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[1].matchExpressions[0].values[0]=${NODEGROUP} --version ${KARPENTER_VERSION} --wait
 ```
 
 ```
@@ -131,9 +117,8 @@ cd /home/ec2-user/environment/helm
 # chart의 replicas수를 조정하여 배포
 ```
 
-```bash
-helm upgrade -i $USERNAME $USERNAME --set replicaCount=9 –wait
-```
+<pre class="language-bash"><code class="lang-bash"><strong>helm upgrade -i $USERNAME $USERNAME --set replicaCount=9 --wait
+</strong></code></pre>
 
 ```
 # node 상태 확인
