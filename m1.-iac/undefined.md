@@ -20,7 +20,10 @@ path 추가
 
 ```bash
 mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+```
+
+```bash
+echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrcb
 ```
 
 설치 확인
@@ -45,7 +48,13 @@ Kustomize Version: v4.5.4​
 
 ```bash
 yum install -y yum-utils​
+```
+
+```bash
 yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo​
+```
+
+```bash
 yum -y install terraform
 ```
 
@@ -69,7 +78,13 @@ terraform version
 
 ```bash
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
+```
+
+```bash
 chmod 700 get_helm.sh​
+```
+
+```bash
 ./get_helm.sh
 ```
 

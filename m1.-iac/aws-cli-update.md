@@ -12,6 +12,9 @@ sudo su -
 
 ```shell
 yum update -y
+```
+
+```bash
 yum upgrade
 ```
 
@@ -19,7 +22,13 @@ aws cli update
 
 ```bash
 pip3 install --upgrade --user awscli
+```
+
+```bash
 echo 'export PATH=$HOME/.local/bin:$PATH'>> ~/.bash_profile
+```
+
+```bash
 source ~/.bash_profile
 ```
 
