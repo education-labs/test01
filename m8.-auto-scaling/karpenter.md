@@ -7,15 +7,11 @@
 ```bash
 CLUSTER_NAME=$USERNAME
 
-CLUSTER_ENDPOINT="$(aws eks describe-cluster \
---name ${CLUSTER_NAME} --region ap-northeast-2 --query "cluster.endpoint" \
---output text)"
+CLUSTER_ENDPOINT="$(aws eks describe-cluster --name ${CLUSTER_NAME} --region ap-northeast-2 --query "cluster.endpoint" --output text)"
 
-OIDC_ENDPOINT="$(aws eks describe-cluster --name ${CLUSTER_NAME} --region ap-northeast-2 \
---query "cluster.identity.oidc.issuer" --output text)"
+OIDC_ENDPOINT="$(aws eks describe-cluster --name ${CLUSTER_NAME} --region ap-northeast-2 --query "cluster.identity.oidc.issuer" --output text)"
 
-AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' \
---output text)
+AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
 ```
 
 ```
@@ -57,8 +53,7 @@ echo "{
 ```
 
 ```bash
-aws iam create-role --role-name ${CLUSTER_NAME}-KarpenterControllerRole \
---assume-role-policy-document file://controller-trust-policy.json
+aws iam create-role --role-name ${CLUSTER_NAME}-KarpenterControllerRole --assume-role-policy-document file://controller-trust-policy.json
 ```
 
 #### Karpenter Controller가 수행할 role과 policy를 만들고 이를 붙여준다.(2/2)
@@ -107,9 +102,7 @@ echo '{
 ```
 
 ```bash
-aws iam put-role-policy --role-name ${CLUSTER_NAME}-KarpenterControllerRole \
---policy-name ${CLUSTER_NAME}-KarpenterControllerPolicy \
---policy-document file://controller-policy.json
+aws iam put-role-policy --role-name ${CLUSTER_NAME}-KarpenterControllerRole --policy-name ${CLUSTER_NAME}-KarpenterControllerPolicy --policy-document file://controller-policy.json
 ```
 
 #### Karpenter가 node를 생성하고 subnet과 security group을 할당하기 위해서는 권한 뿐만 아니라 알맞은 태그가 필요하므로 태그를 만들어준다.(subnet)
@@ -119,11 +112,7 @@ aws iam put-role-policy --role-name ${CLUSTER_NAME}-KarpenterControllerRole \
 ```
 
 ```bash
-for NODEGROUP in $(aws eks list-nodegroups --cluster-name ${CLUSTER_NAME} --region ap-northeast-2 \
---query 'nodegroups' --output text); do aws ec2 create-tags --region ap-northeast-2 \
---tags "Key=karpenter.sh/discovery,Value=${CLUSTER_NAME}" \
---resources $(aws eks describe-nodegroup --cluster-name ${CLUSTER_NAME} --region ap-northeast-2 \
---nodegroup-name $NODEGROUP --query 'nodegroup.subnets' --output text )
+for NODEGROUP in $(aws eks list-nodegroups --cluster-name ${CLUSTER_NAME} --region ap-northeast-2 --query 'nodegroups' --output text); do aws ec2 create-tags --region ap-northeast-2 --tags "Key=karpenter.sh/discovery,Value=${CLUSTER_NAME}" --resources $(aws eks describe-nodegroup --cluster-name ${CLUSTER_NAME} --region ap-northeast-2 --nodegroup-name $NODEGROUP --query 'nodegroup.subnets' --output text )
 done
 ```
 
@@ -150,8 +139,7 @@ aws ec2 describe-subnets --region ap-northeast-2 --filters "Name=tag:karpenter.s
 ```
 
 ```bash
-NODEGROUP=$(aws eks list-nodegroups --cluster-name ${CLUSTER_NAME} --region ap-northeast-2 \
---query 'nodegroups[0]' --output text)
+NODEGROUP=$(aws eks list-nodegroups --cluster-name ${CLUSTER_NAME} --region ap-northeast-2 --query 'nodegroups[0]' --output text)
 ```
 
 ```
@@ -159,7 +147,7 @@ NODEGROUP=$(aws eks list-nodegroups --cluster-name ${CLUSTER_NAME} --region ap-n
 ```
 
 ```bash
-echo $NODEGROUP
+echo $NODEGROUP
 ```
 
 ```
@@ -172,9 +160,7 @@ test-2023XXXXXX
 ```
 
 ```bash
-LAUNCH_TEMPLATE=$(aws eks describe-nodegroup --cluster-name ${CLUSTER_NAME} --region ap-northeast-2 \
---nodegroup-name ${NODEGROUP} --query 'nodegroup.launchTemplate.{id:id,version:version}' \
---output text | tr -s "\t" ",")
+LAUNCH_TEMPLATE=$(aws eks describe-nodegroup --cluster-name ${CLUSTER_NAME} --region ap-northeast-2 --nodegroup-name ${NODEGROUP} --query 'nodegroup.launchTemplate.{id:id,version:version}' --output text | tr -s "\t" ",")
 ```
 
 ```
@@ -183,10 +169,7 @@ LAUNCH_TEMPLATE=$(aws eks describe-nodegroup --cluster-name ${CLUSTER_NAME} --re
 ```
 
 ```bash
-SECURITY_GROUPS=$(aws ec2 describe-launch-template-versions --region ap-northeast-2 \
---launch-template-id ${LAUNCH_TEMPLATE%,*} --versions ${LAUNCH_TEMPLATE#*,} \
---query 'LaunchTemplateVersions[0].LaunchTemplateData.[NetworkInterfaces[0].Groups||SecurityGroupIds]' \
---output text)
+SECURITY_GROUPS=$(aws ec2 describe-launch-template-versions --region ap-northeast-2 --launch-template-id ${LAUNCH_TEMPLATE%,*} --versions ${LAUNCH_TEMPLATE#*,} --query 'LaunchTemplateVersions[0].LaunchTemplateData.[NetworkInterfaces[0].Groups||SecurityGroupIds]' --output text)
 ```
 
 ```
@@ -194,9 +177,7 @@ SECURITY_GROUPS=$(aws ec2 describe-launch-template-versions --region ap-northeas
 ```
 
 ```bash
-aws ec2 create-tags --region ap-northeast-2 \
---tags "Key=karpenter.sh/discovery,Value=${CLUSTER_NAME}" \
---resources ${SECURITY_GROUPS}
+aws ec2 create-tags --region ap-northeast-2 --tags "Key=karpenter.sh/discovery,Value=${CLUSTER_NAME}" --resources ${SECURITY_GROUPS}
 ```
 
 ```
@@ -234,11 +215,11 @@ kubectl edit configmap aws-auth -n kube-system
 #### 아래 값을 mapRoles 하위에 입력
 
 ```bash
-- "groups":
-  - "system:bootstrappers"
-  - "system:nodes"
-  "rolearn": "arn:aws:iam::${AWS_ACCOUNT_ID}:role/${USERNAME}-KarpenterInstanceNodeRole"
-  "username": "system:node:{{EC2PrivateDNSName}}"
+- "groups":
+      - "system:bootstrappers"
+      - "system:nodes"
+      "rolearn": "arn:aws:iam::${AWS_ACCOUNT_ID}:role/${USERNAME}-KarpenterInstanceNodeRole"
+      "username": "system:node:{{EC2PrivateDNSName}}"
 ```
 
 #### 변경한 결과

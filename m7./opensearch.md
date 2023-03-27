@@ -46,10 +46,7 @@ OPENSEARCH_ROLE_ARN=$(aws iam get-role --role-name $USERNAME-role-opensearch | j
 ```
 
 ```bash
-curl -sS -u "$MASTER_USER_NAME:$MASTER_USER_PASSWORD" \​
--X PATCH https://$OPENSEARCH_DOMAIN_ENDPOINT/_opendistro/_security/api/rolesmapping/all_access?pretty \​
--H 'Content-Type: application/json' \​
--d '[{"op": "add", "path": "/backend_roles", "value": [ "$OPENSEARCH_ROLE_ARN" ]}]'
+curl -sS -u "$MASTER_USER_NAME:$MASTER_USER_PASSWORD" -X PATCH https://$OPENSEARCH_DOMAIN_ENDPOINT/_opendistro/_security/api/rolesmapping/all_access?pretty -H 'Content-Type: application/json' -d '[{"op": "add", "path": "/backend_roles", "value": [ "$OPENSEARCH_ROLE_ARN" ]}]'
 ```
 
 ```

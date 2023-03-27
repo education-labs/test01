@@ -13,7 +13,7 @@
 ```
 
 ```bash
-echo 'export USERNAME=devops-user05' >> ~/.bashrc
+echo 'export USERNAME=[학생코드]' >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -58,7 +58,7 @@ echo '{
 ```
 
 ```bash
-aws iam create-role --role-name $USERNAME-KarpenterInstanceNodeRole \ --assume-role-policy-document file://node-trust-policy.json
+aws iam create-role --role-name $USERNAME-KarpenterInstanceNodeRole --assume-role-policy-document file://node-trust-policy.json
 ```
 
 ```
@@ -90,17 +90,13 @@ aws iam get-role --role-name $USERNAME-KarpenterInstanceNodeRole | jq -r .Role.A
 #### 이 Role에 \[AmazonEKSWorkerNodePolicy, AmazonEKS\_CNI\_Policy, AmazonEC2ContainerRegistryReadOnly, AmazonSSMManagedInstanceCore] 정책들을 붙여준다.
 
 ```bash
-aws iam attach-role-policy --role-name $USERNAME-KarpenterInstanceNodeRole \
---policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+aws iam attach-role-policy --role-name $USERNAME-KarpenterInstanceNodeRole --policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
 
-aws iam attach-role-policy --role-name $USERNAME-KarpenterInstanceNodeRole \
---policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+aws iam attach-role-policy --role-name $USERNAME-KarpenterInstanceNodeRole --policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
 
-aws iam attach-role-policy --role-name $USERNAME-KarpenterInstanceNodeRole \
---policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+aws iam attach-role-policy --role-name $USERNAME-KarpenterInstanceNodeRole --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
 
-aws iam attach-role-policy --role-name $USERNAME-KarpenterInstanceNodeRole \
---policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+aws iam attach-role-policy --role-name $USERNAME-KarpenterInstanceNodeRole --policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
 ```
 
 ```
@@ -140,12 +136,9 @@ aws iam list-attached-role-policies --role-name $USERNAME-KarpenterInstanceNodeR
 #### scaling될 Node에 붙일 Instance profile을 만들고 학생코드-KarpenterInstanceNodeRole를 붙인다
 
 ```bash
-aws iam create-instance-profile \
---instance-profile-name $USERNAME-KarpenterInstanceProfile
+aws iam create-instance-profile --instance-profile-name $USERNAME-KarpenterInstanceProfile
 
-aws iam add-role-to-instance-profile \
---instance-profile-name $USERNAME-KarpenterInstanceProfile \
---role-name $USERNAME-KarpenterInstanceNodeRole
+aws iam add-role-to-instance-profile --instance-profile-name $USERNAME-KarpenterInstanceProfile --role-name $USERNAME-KarpenterInstanceNodeRole
 ```
 
 ```
