@@ -142,6 +142,9 @@ Usage: jq [options] <jq filter> [file...]
 
 ```bash
 echo 'export USERNAME=[학생코드]' >> ~/.bashrc​
+```
+
+```bash
 source ~/.bashrc
 ```
 
