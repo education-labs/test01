@@ -117,8 +117,9 @@ cd /home/ec2-user/environment/helm
 # chart의 replicas수를 조정하여 배포
 ```
 
-<pre class="language-bash"><code class="lang-bash"><strong>helm upgrade -i $USERNAME $USERNAME --set replicaCount=9 --wait
-</strong></code></pre>
+```bash
+helm upgrade -i $USERNAME $USERNAME --set replicaCount=9 --wait
+```
 
 ```
 # node 상태 확인
