@@ -9,7 +9,7 @@
 ```
 
 ```bash
-mkdir /home/ec2-user/environment/helm​
+mkdir /home/ec2-user/environment/helm
 cd /home/ec2-user/environment/helm
 ```
 
@@ -133,7 +133,8 @@ replicaset.apps/user01-7c587c59cc   1         1         1  
 #### Helm command 결과창에 안내된 것 처럼 배포된 프로그램의 LB주소를 획득한다.
 
 ```bash
-export LB_NAME = $(kubectl get ingress $(kubectl get ingress -o=jsonpath={.items[*].metadata.name}) -o=jsonpath={.status.loadBalancer.ingress[*].hostname})  
+export LB_NAME = $(kubectl get ingress $(kubectl get ingress -o=jsonpath={.items[*].metadata.name}) -o=jsonpath={.status.loadBalancer.ingress[*].hostname})
+export LB_NAME = $(kubectl get ingress $(kub 
 echo "http://$LB_NAME/"
 ```
 

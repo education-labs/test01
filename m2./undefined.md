@@ -5,8 +5,8 @@
 #### 작업 폴더 생성
 
 ```bash
-mkdir /home/ec2-user/environment/eks​
-chown -R ec2-user:ec2-user /home/ec2-user/environment/eks​
+mkdir /home/ec2-user/environment/eks
+chown -R ec2-user:ec2-user /home/ec2-user/environment/eks
 cd /home/ec2-user/environment/eks
 ```
 
