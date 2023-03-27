@@ -141,7 +141,7 @@ Usage: jq [options] <jq filter> [file...]
 \[학생코드]에 학생코드 입력
 
 ```bash
-echo 'export USERNAME=[학생코드]' >> ~/.bashrc​
+echo 'export USERNAME=[학생코드]' >> ~/.bashrc
 ```
 
 ```bash
