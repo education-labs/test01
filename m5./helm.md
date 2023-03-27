@@ -139,4 +139,4 @@ echo "http://$LB_NAME/"
 
 #### 결과창에 나온 LB주소를 browser에 입력하여 잘 배포 되었는지 확인한다.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>

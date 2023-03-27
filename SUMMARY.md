@@ -26,3 +26,7 @@
 * [M7. 로깅 구성](m7./README.md)
   * [efk.tf 적용 및 배포](m7./efk.tf.md)
   * [OpenSearch](m7./opensearch.md)
+* [M8. auto scaling 구성](m8.-auto-scaling/README.md)
+  * [role 생성](m8.-auto-scaling/role.md)
+  * [karpenter](m8.-auto-scaling/karpenter.md)
+  * [karpenter 배포 및 autoscaling](m8.-auto-scaling/karpenter-autoscaling.md)
